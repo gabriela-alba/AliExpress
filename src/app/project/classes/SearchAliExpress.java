@@ -59,10 +59,10 @@ public class SearchAliExpress extends SetUpPage {
         if(isDisplay(element)){
             selectProduct(element);
             windowHandle();
-            wait = new WebDriverWait(getDriver(), 20);
+            wait = new WebDriverWait(getDriver(), 50);
             WebElement num_stock = wait.until(ExpectedConditions.visibilityOfElementLocated(stock));
             String stk = findElement(stock).getText();
-            if(!stk.equals(OUT_OF_STOCK)){
+            if(stk.equals(OUT_OF_STOCK)){
                 hasStock = true;
                 System.out.println("The second ad has at least 1 item to be bought: "+ hasStock);
                 System.out.println("Stock available: " + stk);
