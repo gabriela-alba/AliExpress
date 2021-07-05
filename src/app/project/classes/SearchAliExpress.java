@@ -57,7 +57,7 @@ public class SearchAliExpress extends SetUpPage {
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(second_ad));
 
         if(isDisplay(element)){
-            click(second_ad);
+            selectProduct(element);
             windowHandle();
             wait = new WebDriverWait(getDriver(), 20);
             WebElement num_stock = wait.until(ExpectedConditions.visibilityOfElementLocated(stock));

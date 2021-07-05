@@ -10,6 +10,10 @@ public class Test {
 
         test.searchItem();
 
+        test.navigateToPage();
+
+        test.stockProduct();
+
     }
 
 }
