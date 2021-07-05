@@ -80,7 +80,7 @@ public class SetUpPage {
     }
 
     public boolean windowHandle(){
-        String mainWindow = getDriver().getWindowHandle();
+        String mainWindow = getWindowHandle();
         boolean isOtherPage = false;
         Set<String> windowHandles = getDriver().getWindowHandles();
         String otherWindow = null;
@@ -94,8 +94,16 @@ public class SetUpPage {
         return isOtherPage;
     }
 
+    public String getWindowHandle(){
+        return getDriver().getWindowHandle();
+    }
+
     public void switchWindow(String windowHandle){
         getDriver().switchTo().window(windowHandle);
+    }
+
+    public String getTitlePage(){
+        return getDriver().getTitle();
     }
 
     public WebDriver getDriver() {
