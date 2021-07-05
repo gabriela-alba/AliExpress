@@ -1,11 +1,13 @@
 package app.project.classes;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import java.util.Set;
 
 public class SetUpPage {
 
@@ -70,11 +72,31 @@ public class SetUpPage {
         getDriver().findElement(locator).sendKeys(inputText);
     }
 
-    public void visitTo(String url){
-        getDriver().get(url);
+    public void visitTo(String url){ getDriver().get(url); }
+
+    public void scrollPage(By locator){
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("window.scrollBy(0,3500)","");
     }
 
+    public boolean windowHandle(){
+        String mainWindow = getDriver().getWindowHandle();
+        boolean isOtherPage = false;
+        Set<String> windowHandles = getDriver().getWindowHandles();
+        String otherWindow = null;
+        for(String windowHandle: windowHandles){
+            if(!windowHandle.equals(mainWindow))
+                otherWindow = windowHandle;
+            isOtherPage = true;
+        }
+        switchWindow(otherWindow);
 
+        return isOtherPage;
+    }
+
+    public void switchWindow(String windowHandle){
+        getDriver().switchTo().window(windowHandle);
+    }
 
     public WebDriver getDriver() {
         return driver;
